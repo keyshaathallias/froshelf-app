@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuidanceController;
 use App\Http\Controllers\PlaceholderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,36 +29,23 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // FR-00: Panduan Pengguna Interaktif (Pemilik & Staf)
     Route::get('/guidance', [GuidanceController::class, 'index'])->name('guidance.index');
 
-    // Placeholder menu operasional (dapat diakses Pemilik & Staf; siap disambungkan dengan branch Kevin & Vany)
+    // Transaksi (Kevin) - jangan dihapus
     Route::get('/transactions', [PlaceholderController::class, 'show'])
         ->defaults('module', 'transactions')
         ->name('transactions.index');
 
-    Route::get('/products', [PlaceholderController::class, 'show'])
-        ->defaults('module', 'products')
-        ->name('products.index');
-
-    // Rute khusus Pemilik (Staf diblokir 403 melalui RoleMiddleware)
     Route::middleware('role:pemilik')->group(function () {
-        // F-09: Dashboard Ringkas Pemilik
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        // Placeholder Master Data & Laporan (siap disambungkan dengan branch Vany & Afif)
-        Route::get('/categories', [PlaceholderController::class, 'show'])
-            ->defaults('module', 'categories')
-            ->name('categories.index');
+        // F-03: CRUD 4 Data Master (Vany)
+        Route::resource('categories', CategoryController::class);
+        Route::resource('products', ProductController::class);
+        Route::resource('suppliers', SupplierController::class);
+        Route::resource('customers', CustomerController::class);
 
-        Route::get('/suppliers', [PlaceholderController::class, 'show'])
-            ->defaults('module', 'suppliers')
-            ->name('suppliers.index');
-
-        Route::get('/customers', [PlaceholderController::class, 'show'])
-            ->defaults('module', 'customers')
-            ->name('customers.index');
-
+        // Laporan (Afif) - jangan dihapus
         Route::get('/reports', [PlaceholderController::class, 'show'])
             ->defaults('module', 'reports')
             ->name('reports.index');
