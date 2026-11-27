@@ -36,6 +36,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'FroShelf') — FroShelf</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-shelly-icon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -48,14 +49,12 @@
         {{-- Brand Header --}}
         <div class="flex h-14 items-center px-5 border-b border-slate-100">
             <a href="{{ $homeRoute }}" class="flex items-center gap-2.5 focus:outline-none">
-                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#2563EB] text-white">
-                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93 4.93 19.07" />
-                    </svg>
-                </span>
+                <img src="{{ asset('images/logo-shelly-icon.png') }}"
+                     alt="Logo Shelly Frozen"
+                     class="h-8 w-8 shrink-0 object-contain">
                 <div class="leading-none">
                     <span class="block text-[15px] font-bold tracking-[-0.02em] text-slate-900">FroShelf</span>
-                    <span class="mt-0.5 block text-[11px] font-medium text-slate-400">Frozen Shelly</span>
+                    <span class="mt-0.5 block text-[11px] font-medium text-slate-400">Shelly Frozen</span>
                 </div>
             </a>
         </div>
@@ -195,10 +194,10 @@
         <header class="sticky top-0 z-20 flex h-14 items-center justify-between gap-3 border-b border-slate-200/80 bg-white/90 px-4 backdrop-blur-sm sm:px-6">
             <div class="flex min-w-0 items-center gap-2.5">
                 {{-- Brand mark visible on mobile only --}}
-                <a href="{{ $homeRoute }}" class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#2563EB] text-white lg:hidden" aria-label="FroShelf">
-                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93 4.93 19.07" />
-                    </svg>
+                <a href="{{ $homeRoute }}" class="flex h-8 w-8 shrink-0 items-center justify-center lg:hidden" aria-label="FroShelf">
+                    <img src="{{ asset('images/logo-shelly-icon.png') }}"
+                         alt="Logo Shelly Frozen"
+                         class="h-7 w-7 object-contain">
                 </a>
                 <p class="truncate text-sm font-semibold text-slate-900">
                     @yield('page_title', 'FroShelf')

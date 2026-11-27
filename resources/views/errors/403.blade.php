@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>403 Akses Dibatasi — FroShelf</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-shelly-icon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,6 +12,7 @@
 </head>
 <body class="flex min-h-screen items-center justify-center bg-[#F7F8FA] px-4 py-10 text-slate-900 font-sans antialiased">
     <div class="w-full max-w-sm rounded-2xl border border-slate-200/80 bg-white p-7 text-center">
+        <img src="{{ asset('images/logo-shelly-icon.png') }}" alt="Logo Shelly Frozen" class="mx-auto mb-3 h-10 w-10 object-contain">
         <p class="text-xs font-semibold tracking-wider text-rose-600 uppercase">403 · Akses Dibatasi</p>
         <h1 class="mt-2 text-lg font-bold tracking-[-0.02em] text-slate-900">Halaman Khusus Pemilik</h1>
         <p class="mt-2 text-sm leading-relaxed text-slate-500">
