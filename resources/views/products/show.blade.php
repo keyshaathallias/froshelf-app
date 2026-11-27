@@ -26,7 +26,9 @@
         </div>
     </div>
     <div class="mt-4 flex gap-3">
-        <a href="{{ route('products.edit', $product) }}" class="bg-blue-600 text-white px-4 py-2 rounded">Ubah</a>
+        @if(auth()->user()->isPemilik())
+            <a href="{{ route('products.edit', $product) }}" class="bg-blue-600 text-white px-4 py-2 rounded">Ubah</a>
+        @endif
         <a href="{{ route('products.index') }}" class="bg-gray-200 px-4 py-2 rounded">Kembali</a>
     </div>
 </div>

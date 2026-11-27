@@ -39,9 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:pemilik')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        // F-03: CRUD 4 Data Master (Vany)
+        // F-03: CRUD 4 Data Master (Vany) — khusus Pemilik untuk buat/ubah/hapus
         Route::resource('categories', CategoryController::class);
-        Route::resource('products', ProductController::class);
+        Route::resource('products', ProductController::class)->except(['index', 'show']);
         Route::resource('suppliers', SupplierController::class);
         Route::resource('customers', CustomerController::class);
 
@@ -50,4 +50,7 @@ Route::middleware('auth')->group(function () {
             ->defaults('module', 'reports')
             ->name('reports.index');
     });
+
+    // Staf & Pemilik dapat melihat daftar produk & lokasi freezer (read-only untuk Staf)
+    Route::resource('products', ProductController::class)->only(['index', 'show']);
 });

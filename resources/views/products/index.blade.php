@@ -4,7 +4,9 @@
 <div class="p-4 md:p-6">
     <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3 mb-4">
         <h1 class="text-2xl font-bold text-gray-800">Data Produk</h1>
-        <a href="{{ route('products.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-center">+ Tambah Produk</a>
+        @if(auth()->user()->isPemilik())
+            <a href="{{ route('products.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-center">+ Tambah Produk</a>
+        @endif
     </div>
     @if(session('success'))
         <div class="bg-green-100 text-green-800 p-3 rounded mb-4">{{ session('success') }}</div>
@@ -42,11 +44,13 @@
                     <td class="px-4 py-3">
                         <div class="flex gap-3">
                             <a href="{{ route('products.show', $prod) }}" class="text-gray-600 hover:underline">Lihat</a>
-                            <a href="{{ route('products.edit', $prod) }}" class="text-blue-600 hover:underline">Ubah</a>
-                            <form action="{{ route('products.destroy', $prod) }}" method="POST" onsubmit="return confirm('Yakin hapus produk ini?')">
-                                @csrf @method('DELETE')
-                                <button class="text-red-600 hover:underline">Hapus</button>
-                            </form>
+                            @if(auth()->user()->isPemilik())
+                                <a href="{{ route('products.edit', $prod) }}" class="text-blue-600 hover:underline">Ubah</a>
+                                <form action="{{ route('products.destroy', $prod) }}" method="POST" onsubmit="return confirm('Yakin hapus produk ini?')">
+                                    @csrf @method('DELETE')
+                                    <button class="text-red-600 hover:underline">Hapus</button>
+                                </form>
+                            @endif
                         </div>
                     </td>
                 </tr>
